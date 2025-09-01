@@ -20,7 +20,7 @@ class EncodingMiddleware(BaseHTTPMiddleware):
         self, request: Request, call_next: Callable[[Request], Awaitable[Response]]
     ) -> Response:
         orig_path: str = request.scope["path"]
-        if orig_path.endswith((".ttf", ".png", ".json")):
+        if orig_path.endswith((".ttf", ".png")):
             return await call_next(request)
         path = orig_path
         if (root_path := request.scope["root_path"]) and path.startswith(root_path):
@@ -41,11 +41,14 @@ def protodocs_app(
     services: Iterable[str] | str,
     serialized_descriptors: bytes | None = None,
     example_requests: Mapping[str, Iterable[Message]] | None = None,
-    injected_script_suppliers: Iterable[Callable[[], str]] = (),
+    injected_script_suppliers: Iterable[Callable[[], str]] | Callable[[], str] = (),
 ) -> Starlette:
-    # Allow passing in path for convenience
+    # Allow passing in singletons for convenience
     if isinstance(services, str):
         services = [services]
+    if isinstance(injected_script_suppliers, Callable):
+        injected_script_suppliers = [injected_script_suppliers]
+
     services = [s if not s.startswith("/") else s[1:] for s in services]
     spec = generate_proto_specification(
         services, serialized_descriptors, example_requests
@@ -86,7 +89,10 @@ def protodocs_app(
             Route("/schemas.json", serve_schemas),
             Route("/versions.json", serve_versions),
             Route("/injected.js", serve_injected),
-            Mount("/", StaticFiles(directory=Path(__file__).parent / "docsclient")),
-        ],
-        middleware=[Middleware(EncodingMiddleware)],
+            Mount(
+                "/",
+                StaticFiles(directory=Path(__file__).parent / "docsclient"),
+                middleware=[Middleware(EncodingMiddleware)],
+            ),
+        ]
     )
