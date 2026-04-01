@@ -53,7 +53,7 @@ Also see a full example [here](./examples/).
 
 ### Descriptor Set
 
-The docs handler can utilize a serialized descriptor set to augment documentation with the comments
+The app can utilize a serialized descriptor set to augment documentation with the comments
 from a proto source file. It is strongly recommended to do this to make the documentation more
 useful.
 
