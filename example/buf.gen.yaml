@@ -3,17 +3,17 @@ plugins:
   - local:
       - go
       - run
-      - github.com/wasilibs/go-protoc-gen-builtins/cmd/protoc-gen-python@v1.32.0
+      - github.com/wasilibs/go-protoc-gen-builtins/cmd/protoc-gen-python@v1.34.1
     out: .
   - local:
       - go
       - run
-      - github.com/wasilibs/go-protoc-gen-builtins/cmd/protoc-gen-pyi@v1.32.0
+      - github.com/wasilibs/go-protoc-gen-builtins/cmd/protoc-gen-pyi@v1.34.1
     out: .
   - local:
       - go
       - run
-      - github.com/i2y/connecpy/v2/protoc-gen-connecpy@83049faf4f5ed93072ab8088672868bf92e76b9b
+      - github.com/connectrpc/connect-python/protoc-gen-connect-python@fd83a6fd23613721a86e2b823671c0798c7cb033
     out: .
     opt:
       - imports=relative
