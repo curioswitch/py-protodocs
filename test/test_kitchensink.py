@@ -1,8 +1,9 @@
 import json
 from pathlib import Path
 
-import test.testpb_pb2  # noqa: F401
 from protodocs._proto_specification import generate_proto_specification
+
+from . import testpb_pb2  # noqa: F401
 
 
 def test_all_parameter_types_match_armeria() -> None:

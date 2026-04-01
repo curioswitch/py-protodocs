@@ -39,8 +39,8 @@ classifiers = [
 
 dependencies = ["protobuf", "starlette"]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
   "connect-python",
   "pyright[nodejs]",
   "pytest",

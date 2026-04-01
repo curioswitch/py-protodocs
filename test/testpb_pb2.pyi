@@ -1,11 +1,9 @@
-from collections.abc import Iterable as _Iterable
-from collections.abc import Mapping as _Mapping
-from typing import ClassVar as _ClassVar
-
-from google.protobuf import descriptor as _descriptor
-from google.protobuf import message as _message
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
+from google.protobuf import descriptor as _descriptor
+from google.protobuf import message as _message
+from collections.abc import Iterable as _Iterable, Mapping as _Mapping
+from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
@@ -14,46 +12,24 @@ class TestEnum(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     ZERO: _ClassVar[TestEnum]
     ONE: _ClassVar[TestEnum]
     TWO: _ClassVar[TestEnum]
-
 ZERO: TestEnum
 ONE: TestEnum
 TWO: TestEnum
 
 class TestMessage(_message.Message):
-    __slots__ = (
-        "bool",
-        "bytes",
-        "double",
-        "fixed32",
-        "fixed64",
-        "float",
-        "int32",
-        "int64",
-        "map",
-        "nested",
-        "self",
-        "sint32",
-        "sint64",
-        "string",
-        "strings",
-        "test_enum",
-        "uint32",
-        "uint64",
-    )
+    __slots__ = ("bool", "int32", "int64", "uint32", "uint64", "sint32", "sint64", "fixed32", "fixed64", "float", "double", "string", "bytes", "test_enum", "nested", "strings", "map", "self")
     class Nested(_message.Message):
         __slots__ = ("string",)
         STRING_FIELD_NUMBER: _ClassVar[int]
         string: str
-        def __init__(self, string: str | None = ...) -> None: ...
-
+        def __init__(self, string: _Optional[str] = ...) -> None: ...
     class MapEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
         VALUE_FIELD_NUMBER: _ClassVar[int]
         key: str
         value: int
-        def __init__(self, key: str | None = ..., value: int | None = ...) -> None: ...
-
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[int] = ...) -> None: ...
     BOOL_FIELD_NUMBER: _ClassVar[int]
     INT32_FIELD_NUMBER: _ClassVar[int]
     INT64_FIELD_NUMBER: _ClassVar[int]
@@ -90,119 +66,53 @@ class TestMessage(_message.Message):
     strings: _containers.RepeatedScalarFieldContainer[str]
     map: _containers.ScalarMap[str, int]
     self: TestMessage
-    def __init__(
-        self_,
-        bool: bool | None = ...,
-        int32: int | None = ...,
-        int64: int | None = ...,
-        uint32: int | None = ...,
-        uint64: int | None = ...,
-        sint32: int | None = ...,
-        sint64: int | None = ...,
-        fixed32: int | None = ...,
-        fixed64: int | None = ...,
-        float: float | None = ...,
-        double: float | None = ...,
-        string: str | None = ...,
-        bytes: bytes | None = ...,
-        test_enum: TestEnum | str | None = ...,
-        nested: TestMessage.Nested | _Mapping | None = ...,
-        strings: _Iterable[str] | None = ...,
-        map: _Mapping[str, int] | None = ...,
-        self: TestMessage | _Mapping | None = ...,
-    ) -> None: ...
+    def __init__(self_, bool: _Optional[bool] = ..., int32: _Optional[int] = ..., int64: _Optional[int] = ..., uint32: _Optional[int] = ..., uint64: _Optional[int] = ..., sint32: _Optional[int] = ..., sint64: _Optional[int] = ..., fixed32: _Optional[int] = ..., fixed64: _Optional[int] = ..., float: _Optional[float] = ..., double: _Optional[float] = ..., string: _Optional[str] = ..., bytes: _Optional[bytes] = ..., test_enum: _Optional[_Union[TestEnum, str]] = ..., nested: _Optional[_Union[TestMessage.Nested, _Mapping]] = ..., strings: _Optional[_Iterable[str]] = ..., map: _Optional[_Mapping[str, int]] = ..., self: _Optional[_Union[TestMessage, _Mapping]] = ...) -> None: ...
 
 class ExtendedTestMessage(_message.Message):
-    __slots__ = (
-        "bool",
-        "bytes",
-        "complex_other_message",
-        "double",
-        "fixed32",
-        "fixed64",
-        "float",
-        "int32",
-        "int64",
-        "int_to_string_map",
-        "message_map",
-        "nested",
-        "nested_nested_self",
-        "nested_self",
-        "nesteds",
-        "self",
-        "self_map",
-        "selves",
-        "sint32",
-        "sint64",
-        "string",
-        "string_to_int_map",
-        "strings",
-        "test_enum",
-        "uint32",
-        "uint64",
-    )
+    __slots__ = ("bool", "int32", "int64", "uint32", "uint64", "sint32", "sint64", "fixed32", "fixed64", "float", "double", "string", "bytes", "test_enum", "nested", "complex_other_message", "strings", "nesteds", "selves", "string_to_int_map", "int_to_string_map", "message_map", "self_map", "self", "nested_self", "nested_nested_self")
     class Nested(_message.Message):
         __slots__ = ("string",)
         STRING_FIELD_NUMBER: _ClassVar[int]
         string: str
-        def __init__(self, string: str | None = ...) -> None: ...
-
+        def __init__(self, string: _Optional[str] = ...) -> None: ...
     class NestedSelf(_message.Message):
         __slots__ = ("self",)
         SELF_FIELD_NUMBER: _ClassVar[int]
         self: ExtendedTestMessage
-        def __init__(
-            self_, self: ExtendedTestMessage | _Mapping | None = ...
-        ) -> None: ...
-
+        def __init__(self_, self: _Optional[_Union[ExtendedTestMessage, _Mapping]] = ...) -> None: ...
     class NestedNestedSelf(_message.Message):
         __slots__ = ("nested_self",)
         NESTED_SELF_FIELD_NUMBER: _ClassVar[int]
         nested_self: ExtendedTestMessage.NestedSelf
-        def __init__(
-            self, nested_self: ExtendedTestMessage.NestedSelf | _Mapping | None = ...
-        ) -> None: ...
-
+        def __init__(self, nested_self: _Optional[_Union[ExtendedTestMessage.NestedSelf, _Mapping]] = ...) -> None: ...
     class StringToIntMapEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
         VALUE_FIELD_NUMBER: _ClassVar[int]
         key: str
         value: int
-        def __init__(self, key: str | None = ..., value: int | None = ...) -> None: ...
-
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[int] = ...) -> None: ...
     class IntToStringMapEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
         VALUE_FIELD_NUMBER: _ClassVar[int]
         key: int
         value: str
-        def __init__(self, key: int | None = ..., value: str | None = ...) -> None: ...
-
+        def __init__(self, key: _Optional[int] = ..., value: _Optional[str] = ...) -> None: ...
     class MessageMapEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
         VALUE_FIELD_NUMBER: _ClassVar[int]
         key: str
         value: ExtendedTestMessage.Nested
-        def __init__(
-            self,
-            key: str | None = ...,
-            value: ExtendedTestMessage.Nested | _Mapping | None = ...,
-        ) -> None: ...
-
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[ExtendedTestMessage.Nested, _Mapping]] = ...) -> None: ...
     class SelfMapEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
         VALUE_FIELD_NUMBER: _ClassVar[int]
         key: str
         value: ExtendedTestMessage
-        def __init__(
-            self,
-            key: str | None = ...,
-            value: ExtendedTestMessage | _Mapping | None = ...,
-        ) -> None: ...
-
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[ExtendedTestMessage, _Mapping]] = ...) -> None: ...
     BOOL_FIELD_NUMBER: _ClassVar[int]
     INT32_FIELD_NUMBER: _ClassVar[int]
     INT64_FIELD_NUMBER: _ClassVar[int]
@@ -255,34 +165,4 @@ class ExtendedTestMessage(_message.Message):
     self: ExtendedTestMessage
     nested_self: ExtendedTestMessage.NestedSelf
     nested_nested_self: ExtendedTestMessage.NestedNestedSelf
-    def __init__(
-        self_,
-        bool: bool | None = ...,
-        int32: int | None = ...,
-        int64: int | None = ...,
-        uint32: int | None = ...,
-        uint64: int | None = ...,
-        sint32: int | None = ...,
-        sint64: int | None = ...,
-        fixed32: int | None = ...,
-        fixed64: int | None = ...,
-        float: float | None = ...,
-        double: float | None = ...,
-        string: str | None = ...,
-        bytes: bytes | None = ...,
-        test_enum: TestEnum | str | None = ...,
-        nested: ExtendedTestMessage.Nested | _Mapping | None = ...,
-        complex_other_message: TestMessage | _Mapping | None = ...,
-        strings: _Iterable[str] | None = ...,
-        nesteds: _Iterable[ExtendedTestMessage.Nested | _Mapping] | None = ...,
-        selves: _Iterable[ExtendedTestMessage | _Mapping] | None = ...,
-        string_to_int_map: _Mapping[str, int] | None = ...,
-        int_to_string_map: _Mapping[int, str] | None = ...,
-        message_map: _Mapping[str, ExtendedTestMessage.Nested] | None = ...,
-        self_map: _Mapping[str, ExtendedTestMessage] | None = ...,
-        self: ExtendedTestMessage | _Mapping | None = ...,
-        nested_self: ExtendedTestMessage.NestedSelf | _Mapping | None = ...,
-        nested_nested_self: ExtendedTestMessage.NestedNestedSelf
-        | _Mapping
-        | None = ...,
-    ) -> None: ...
+    def __init__(self_, bool: _Optional[bool] = ..., int32: _Optional[int] = ..., int64: _Optional[int] = ..., uint32: _Optional[int] = ..., uint64: _Optional[int] = ..., sint32: _Optional[int] = ..., sint64: _Optional[int] = ..., fixed32: _Optional[int] = ..., fixed64: _Optional[int] = ..., float: _Optional[float] = ..., double: _Optional[float] = ..., string: _Optional[str] = ..., bytes: _Optional[bytes] = ..., test_enum: _Optional[_Union[TestEnum, str]] = ..., nested: _Optional[_Union[ExtendedTestMessage.Nested, _Mapping]] = ..., complex_other_message: _Optional[_Union[TestMessage, _Mapping]] = ..., strings: _Optional[_Iterable[str]] = ..., nesteds: _Optional[_Iterable[_Union[ExtendedTestMessage.Nested, _Mapping]]] = ..., selves: _Optional[_Iterable[_Union[ExtendedTestMessage, _Mapping]]] = ..., string_to_int_map: _Optional[_Mapping[str, int]] = ..., int_to_string_map: _Optional[_Mapping[int, str]] = ..., message_map: _Optional[_Mapping[str, ExtendedTestMessage.Nested]] = ..., self_map: _Optional[_Mapping[str, ExtendedTestMessage]] = ..., self: _Optional[_Union[ExtendedTestMessage, _Mapping]] = ..., nested_self: _Optional[_Union[ExtendedTestMessage.NestedSelf, _Mapping]] = ..., nested_nested_self: _Optional[_Union[ExtendedTestMessage.NestedNestedSelf, _Mapping]] = ...) -> None: ...
