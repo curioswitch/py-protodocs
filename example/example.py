@@ -1,12 +1,12 @@
 from pathlib import Path
 
-from connecpy.request import RequestContext
+from connectrpc.request import RequestContext
 from starlette.applications import Starlette
 from starlette.routing import Mount
 
 from protodocs import protodocs_app
 
-from .greet_connecpy import GreetService, GreetServiceASGIApplication
+from .greet_connect import GreetService, GreetServiceASGIApplication
 from .greet_pb2 import Greeting, GreetingRequest, GreetingResponse
 
 
